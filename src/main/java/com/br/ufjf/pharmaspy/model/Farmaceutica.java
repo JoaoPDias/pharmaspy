@@ -1,4 +1,4 @@
-package com.br.ufjf.pharmaspy;
+package com.br.ufjf.pharmaspy.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,5 +11,5 @@ public class Farmaceutica {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long idFarmaceutica;
     private String nome;
-    private String CNPJ;
+    private String cnpj;
 }

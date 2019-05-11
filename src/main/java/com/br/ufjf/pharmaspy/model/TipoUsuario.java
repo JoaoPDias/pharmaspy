@@ -1,4 +1,4 @@
-package com.br.ufjf.pharmaspy;
+package com.br.ufjf.pharmaspy.model;
 
 public enum TipoUsuario {
     CONSUMIDOR("Consumidor"),FARMACEUTICO("Farmacêutico"),SERVIDOR("Servidor");
