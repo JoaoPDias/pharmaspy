@@ -12,6 +12,8 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long idUsuario;
     @Column(unique = true)
+    private String nome;
+    private String dataNascimento;
     private String CPF;
     @Enumerated
     private TipoUsuario tipoUsuario;
