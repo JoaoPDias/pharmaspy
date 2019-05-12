@@ -12,4 +12,11 @@ public class ChamadoController {
         mv.setViewName("chamado");
         return mv;
     }
+
+    @GetMapping({"escolha-medicamento.html"})
+    public ModelAndView busca() {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("escolhamedicamento");
+        return mv;
+    }
 }
