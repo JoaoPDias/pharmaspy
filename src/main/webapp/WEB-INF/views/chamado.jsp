@@ -1,4 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@page contentType="text/html" %>
 <%@page pageEncoding="UTF-8" %>
 <%--
@@ -12,6 +13,7 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
 
 <%@include file="fragments/header.jspf" %>
 </head>
+<body onload="updateSize();">
 <%@include file="fragments/nav.jspf" %>
 <div class="row">
     <div class="col-lg-4 col-md-4 col-sm-12"></div>
@@ -19,12 +21,9 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
         <form class="form" method="post" action="/chamado.html">
             Estamos abrindo um chamado. Relate preenchendo as informações abaixo:
             <div class="form-group">
-                <label for="medicamento">Escolha o medicamento: </label>
-                <select id="medicamento" name='medicamento' class="form-control">
-                    <c:forEach items="${medicamentos}" var="medicamento">
-                        <option value="${medicamento.id}">${medicamento.nome}</option>
-                    </c:forEach>
-                </select>
+                <label for="medicamento">Medicamento Escolhido</label>
+                <input type="text" class="form-control" id="medicamento" name="lote"
+                       placeholder="Medicamento">
             </div>
 
             <div class="form-group">
@@ -38,29 +37,46 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
             </div>
 
             <div class="form-group">
-                <label for="farmaceutico">Laboratório: </label>
-                <select id="farmaceutico" name='farmaceutico' class="form-control">
-                    <c:forEach items="${farmaceuticas}" var="farmaceutico">
-                        <option value="${farmaceutico.id}">${farmaceutico.nome}</option>
-                    </c:forEach>
-                </select>
-            </div>
 
-            <div class="form-group">
                 <label for="relato">Relato</label>
-                <input type="text" class="form-control" id="relato" name="relato"
-                       placeholder="Relato">
-            </div>
+               <textarea class="form-control" id="relato" name="relato" rows="10" cols="40" maxlength="500">
+                   Relate aqui a experiência que teve com o medicamento escolhido.
+               </textarea>
 
-            <div class="form-group">
-                <label for="anexo">Anexo</label>
-                <input type="text" class="form-control" id="anexo" name="anexo"
-                       placeholder="Anexo">
-
-                <button>Anexar Foto</button>
             </div>
 
 
+            <form name="uploadingForm" enctype="multipart/form-data" action="/upload.html" method="POST">
+                <p>
+                    Anexar foto
+                    <input id="fileInput" type="file" name="uploadingFiles" onchange="updateSize();" multiple>
+                    selected files: <span id="fileNum">0</span>;
+                    total size: <span id="fileSize">0</span>
+                </p>
+                <p>
+                    <input type="submit" value="Upload files">
+                </p>
+            </form>
+            <script>
+                function updateSize() {
+                    var nBytes = 0,
+                        oFiles = document.getElementById("fileInput").files,
+                        nFiles = oFiles.length;
+                    for (var nFileId = 0; nFileId < nFiles; nFileId++) {
+                        nBytes += oFiles[nFileId].size;
+                    }
+
+                    var sOutput = nBytes + " bytes";
+                    // optional code for multiples approximation
+                    for (var aMultiples = ["KiB", "MiB", "GiB", "TiB", "PiB", "EiB", "ZiB", "YiB"], nMultiple = 0, nApprox = nBytes / 1024; nApprox > 1; nApprox /= 1024, nMultiple++) {
+                        sOutput = nApprox.toFixed(3) + " " + aMultiples[nMultiple] + " (" + nBytes + " bytes)";
+                    }
+                    // end of optional code
+
+                    document.getElementById("fileNum").innerHTML = nFiles;
+                    document.getElementById("fileSize").innerHTML = sOutput;
+                }
+            </script>
 
             <button type="submit" class="btn btn-success">Salvar</button>
             <button type="reset" class="btn btn-danger">Cancelar</button>
