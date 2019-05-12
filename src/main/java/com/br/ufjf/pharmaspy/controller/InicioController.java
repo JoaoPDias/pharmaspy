@@ -23,9 +23,13 @@ public class InicioController {
     @PostMapping({"login.html"})
     public ModelAndView login(String email,String senha) {
     Usuario usuario = usuarioRepository.findByEmailIgnoreCase(email);
-        if(usuario.g)
+        if(usuario.getSenha().equals(senha)) {
+            ModelAndView mv = new ModelAndView();
+            mv.setViewName("login");
+            return mv;
+        }
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("login");
+        mv.setViewName("inicial");
         return mv;
     }
 
