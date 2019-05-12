@@ -14,7 +14,7 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
 <%@include file="fragments/header.jspf" %>
 <title>PharmaSpy</title>
 </head>
-<%@include file="fragments/nav.jspf" %>
+
 <div class="row">
     <div class="col"></div>
     <div class="col"></div>
