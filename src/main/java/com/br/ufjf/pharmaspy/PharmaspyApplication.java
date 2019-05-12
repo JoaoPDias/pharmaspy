@@ -1,4 +1,4 @@
-package com.br.ufjf.pharmaspy.model;
+package com.br.ufjf.pharmaspy;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -23,7 +23,7 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
             <div class="well bg-white box-login">
 
 
-                <img src="imagem/logoPharmaSpy2s.jpg" class="rounded mx-auto d-block" width="500" height="166" alt="Imagem">
+                <img src="../../imagem/logoPharmaSpy2s.jpg" class="rounded mx-auto d-block" width="500" height="166" alt="Imagem">
                 <br/>
                 <form method="post">
                     <fieldset>
