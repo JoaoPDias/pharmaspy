@@ -8,12 +8,18 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class InicioController {
 
-    @GetMapping({"","login.html"})
+    @GetMapping({"login.html"})
     public ModelAndView login() {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("login");
         return mv;
     }
 
+    @GetMapping({"inicio.html"})
+    public ModelAndView inicio() {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("inicial");
+        return mv;
+    }
 
 }
