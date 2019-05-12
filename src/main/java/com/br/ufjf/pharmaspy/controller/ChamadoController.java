@@ -2,6 +2,7 @@ package com.br.ufjf.pharmaspy.controller;
 
 import com.br.ufjf.pharmaspy.model.Medicamento;
 import com.br.ufjf.pharmaspy.repository.MedicamentoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @Controller
 public class ChamadoController {
+    @Autowired
     private MedicamentoRepository medicamentoRepository;
     @GetMapping({"chamado.html/{idMedicamento}"})
     public ModelAndView chamado(@PathVariable Long id) {

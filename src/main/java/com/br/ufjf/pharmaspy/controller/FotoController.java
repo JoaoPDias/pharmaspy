@@ -1,6 +1,7 @@
 package com.br.ufjf.pharmaspy.controller;
 
 import com.br.ufjf.pharmaspy.repository.FotoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,8 @@ import java.io.IOException;
 @Controller
 public class FotoController {
     public static final String uploadingDir = System.getProperty("user.dir") + "/uploadingDir/";
+
+    @Autowired
     private FotoRepository fotoRepository;
 
     @GetMapping("/upload.html")
