@@ -22,8 +22,9 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
             Estamos abrindo um chamado. Relate preenchendo as informações abaixo:
             <div class="form-group">
                 <label for="medicamento">Medicamento Escolhido</label>
-                <input type="text" class="form-control" id="medicamento" name="lote"
-                       placeholder="Medicamento">
+                <input type="text" class="form-control" id="medicamento" name="medicamento"
+                       placeholder="Medicamento" readonly value="${medicamento.nomeMedicamento}">
+                <input type="hidden" value="${medicamento.idMedicamento}">
             </div>
 
             <div class="form-group">

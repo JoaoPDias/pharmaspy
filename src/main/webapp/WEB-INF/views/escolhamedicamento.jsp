@@ -21,7 +21,7 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
 
 
             <div class="form-group">
-                <label for="buscamedicamento">Anexo</label>
+                <label for="buscamedicamento">Buscar</label>
                 <input type="text" class="form-control" id="buscamedicamento" name="buscamedicamento"
                        placeholder="Busque aqui o medicamento que deseja encontrar">
 
@@ -41,7 +41,7 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
                     <tr>
                         <td>${medicamento.nome}</td>
                         <td>${medicamento.laboratorio}</td>
-                        <td><a href="chamado.html/${sede.id}" class="btn btn-primary">Iniciar Chamado</a></td>
+                        <td><a href="chamado.html/${medicamento.id}" class="btn btn-primary">Iniciar Chamado</a></td>
 
                     </tr>
                 </c:forEach>
