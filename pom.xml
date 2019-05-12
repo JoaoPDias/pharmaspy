@@ -7,7 +7,11 @@
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.1.4.RELEASE</version>
         <relativePath/> <!-- lookup parent from com.br.ufjf.pharmaspy.repository -->
+
     </parent>
+
+
+
     <groupId>com.br.ufjf</groupId>
     <artifactId>pharmaspy</artifactId>
     <version>0.0.1-SNAPSHOT</version>

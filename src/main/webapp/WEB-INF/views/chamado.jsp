@@ -38,6 +38,18 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
             </div>
 
             <div class="form-group">
+                <label for="lote">Fármacia ou Drogaria em que o medicamento foi adquirido</label>
+                <input type="text" class="form-control" id="lote" name="lote"
+                       placeholder="Lote">
+            </div>
+
+            <div class="form-group">
+                <label for="lote">CEP do Estabelecimento</label>
+                <input type="text" class="form-control" id="cep" name="cep"
+                       placeholder="*****-***">
+            </div>
+
+            <div class="form-group">
 
                 <label for="relato">Relato</label>
                <textarea class="form-control" id="relato" name="relato" rows="10" cols="40" maxlength="500">
