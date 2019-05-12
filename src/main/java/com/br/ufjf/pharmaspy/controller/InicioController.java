@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class InicioController {
     @Autowired
     private UsuarioRepository usuarioRepository;
+
     @GetMapping({"login.html"})
     public ModelAndView login() {
         ModelAndView mv = new ModelAndView();
@@ -21,9 +22,9 @@ public class InicioController {
     }
 
     @PostMapping({"login.html"})
-    public ModelAndView login(String email,String senha) {
-    Usuario usuario = usuarioRepository.findByEmailIgnoreCase(email);
-        if(usuario.getSenha().equals(senha)) {
+    public ModelAndView login(String email, String senha) {
+        Usuario usuario = usuarioRepository.findByEmailIgnoreCase(email);
+        if (usuario.getSenha().equals(senha)) {
             ModelAndView mv = new ModelAndView();
             mv.setViewName("login");
             return mv;

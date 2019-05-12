@@ -1,6 +1,7 @@
 package com.br.ufjf.pharmaspy.model;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -15,13 +16,16 @@ public class Chamado {
     private Long idChamado;
     @OneToOne
     private Usuario usuarioCriador;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dataAquisicao;
-    private String localAquisicao;
+    @OneToOne
+    private Endereco localAquisicao;
     private String relato;
     @CreationTimestamp
     private LocalDateTime dataCadastro;
     @OneToOne
     private Medicamento medicamento;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dataValidade;
     private String lote;
     @ManyToMany

@@ -29,3 +29,5 @@ HELP.md
 .vscode/
 
 uploadingDir/1/
+
+src/main/resources/application\.properties
