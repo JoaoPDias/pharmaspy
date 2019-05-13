@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class InicioController {
     @Autowired
@@ -22,14 +24,15 @@ public class InicioController {
     }
 
     @PostMapping({"login.html"})
-    public ModelAndView login(String email, String senha) {
+    public ModelAndView login(String email, String senha, HttpSession session) {
         Usuario usuario = usuarioRepository.findByEmailIgnoreCase(email);
         if (usuario.getSenha().equals(senha)) {
             ModelAndView mv = new ModelAndView();
             mv.setViewName("login");
             return mv;
         }
-        ModelAndView mv = new ModelAndView();
+        session.setAttribute("usuarioId",usuario.getIdUsuario());
+        ModelAndView mv = new ModelAndView().addObject("usuario",usuario);
         mv.setViewName("inicial");
         return mv;
     }

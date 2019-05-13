@@ -32,4 +32,103 @@ public class Chamado {
     private List<ReacaoMedicamento> reacaoMedicamento;
     @OneToMany
     private List<Foto> fotos;
+
+    public Long getIdChamado() {
+        return idChamado;
+    }
+
+    public Chamado setIdChamado(Long idChamado) {
+        this.idChamado = idChamado;
+        return this;
+    }
+
+    public Usuario getUsuarioCriador() {
+        return usuarioCriador;
+    }
+
+    public Chamado setUsuarioCriador(Usuario usuarioCriador) {
+        this.usuarioCriador = usuarioCriador;
+        return this;
+    }
+
+    public LocalDate getDataAquisicao() {
+        return dataAquisicao;
+    }
+
+    public Chamado setDataAquisicao(LocalDate dataAquisicao) {
+        this.dataAquisicao = dataAquisicao;
+        return this;
+    }
+
+    public Endereco getLocalAquisicao() {
+        return localAquisicao;
+    }
+
+    public Chamado setLocalAquisicao(Endereco localAquisicao) {
+        this.localAquisicao = localAquisicao;
+        return this;
+    }
+
+    public String getRelato() {
+        return relato;
+    }
+
+    public Chamado setRelato(String relato) {
+        this.relato = relato;
+        return this;
+    }
+
+    public LocalDateTime getDataCadastro() {
+        return dataCadastro;
+    }
+
+    public Chamado setDataCadastro(LocalDateTime dataCadastro) {
+        this.dataCadastro = dataCadastro;
+        return this;
+    }
+
+    public Medicamento getMedicamento() {
+        return medicamento;
+    }
+
+    public Chamado setMedicamento(Medicamento medicamento) {
+        this.medicamento = medicamento;
+        return this;
+    }
+
+    public LocalDate getDataValidade() {
+        return dataValidade;
+    }
+
+    public Chamado setDataValidade(LocalDate dataValidade) {
+        this.dataValidade = dataValidade;
+        return this;
+    }
+
+    public String getLote() {
+        return lote;
+    }
+
+    public Chamado setLote(String lote) {
+        this.lote = lote;
+        return this;
+    }
+
+    public List<ReacaoMedicamento> getReacaoMedicamento() {
+        return reacaoMedicamento;
+    }
+
+    public Chamado setReacaoMedicamento(List<ReacaoMedicamento> reacaoMedicamento) {
+        this.reacaoMedicamento = reacaoMedicamento;
+        return this;
+    }
+
+    public List<Foto> getFotos() {
+        return fotos;
+    }
+
+    public Chamado setFotos(List<Foto> fotos) {
+        this.fotos = fotos;
+        return this;
+    }
 }

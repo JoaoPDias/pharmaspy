@@ -30,7 +30,7 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
 
                         <div class="form-group ls-login-user">
                             <label for="userLogin">E-mail</label>
-                            <input class="form-control ls-login-bg-user input-lg" id="userLogin" type="text" aria-label="Usuário" placeholder="Usuário" name="usuario">
+                            <input class="form-control ls-login-bg-user input-lg" id="userLogin" type="text" aria-label="Usuário" placeholder="Usuário" name="email">
                         </div>
 
                         <div class="form-group ls-login-password">

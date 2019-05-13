@@ -13,7 +13,7 @@ import java.io.IOException;
 
 @Controller
 public class FotoController {
-    public static final String uploadingDir = System.getProperty("user.dir") + "/uploadingDir/";
+  /*  public static final String uploadingDir = System.getProperty("user.dir") + "/uploadingDir/";
 
     @Autowired
     private FotoRepository fotoRepository;
@@ -27,16 +27,9 @@ public class FotoController {
 
     @PostMapping(value = "/upload.html")
     public String uploadingPost(@RequestParam("uploadingFiles") MultipartFile[] uploadingFiles) throws IOException {
-        File dir = new File(uploadingDir+"/1");
-        if(!dir.exists()){
-            dir.mkdirs();
-        }
-        for(MultipartFile uploadedFile : uploadingFiles) {
-            File file = new File(dir +"/"+ uploadedFile.getOriginalFilename());
-            uploadedFile.transferTo(file);
-        }
+        ChamadoController.fileSave(uploadingFiles, uploadingDir);
 
 
         return "redirect:/upload.html";
-    }
+    }*/
 }
