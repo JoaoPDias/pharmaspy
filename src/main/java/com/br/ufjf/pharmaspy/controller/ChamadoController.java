@@ -1,18 +1,13 @@
 package com.br.ufjf.pharmaspy.controller;
 
-import com.br.ufjf.pharmaspy.model.Chamado;
-import com.br.ufjf.pharmaspy.model.Foto;
-import com.br.ufjf.pharmaspy.model.Medicamento;
-import com.br.ufjf.pharmaspy.model.Usuario;
+import com.br.ufjf.pharmaspy.ViaCEPClient;
+import com.br.ufjf.pharmaspy.model.*;
 import com.br.ufjf.pharmaspy.repository.ChamadoRepository;
 import com.br.ufjf.pharmaspy.repository.FotoRepository;
 import com.br.ufjf.pharmaspy.repository.MedicamentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -33,9 +28,12 @@ public class ChamadoController {
     private FotoRepository fotoRepository;
     public static final String uploadingDir = System.getProperty("user.dir") + "/uploadingDir/";
 
+    @Autowired
+    private ViaCEPClient viaCEPClient;
     @GetMapping({"chamado.html/{idMedicamento}"})
-    public ModelAndView chamado(@PathVariable Long id) {
-        Medicamento medicamento = medicamentoRepository.getOne(id);
+    public ModelAndView chamado(@PathVariable Long idMedicamento) {
+       /* Long idMedicamento = Long.valueOf(idMedicamento);*/
+        Medicamento medicamento = medicamentoRepository.getOne(idMedicamento);
         ModelAndView mv = new ModelAndView().addObject("medicamento",medicamento);
         mv.setViewName("chamado");
         return mv;
@@ -56,7 +54,12 @@ public class ChamadoController {
         mv.setViewName("login");
         return mv;
     }
+    @PostMapping("endereco.html")
+    public @ResponseBody Endereco getEndereco(@RequestBody String cep){
+        String cepPesquisa = cep.replace("-","").replace(".","").replace("\"","" );
+        return viaCEPClient.buscaEnderecoPor(cepPesquisa);
 
+    }
     private void fileSave(@RequestParam("uploadingFiles") MultipartFile[] uploadingFiles, String uploadingDir, Chamado chamado) throws IOException {
         File dir = new File(uploadingDir +"/"+chamado.getIdChamado());
         if(!dir.exists()){

@@ -14,23 +14,20 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
 </head>
 <%@include file="fragments/nav.jspf" %>
 <div class="row">
-    <div class="col-lg-4 col-md-4 col-sm-12"></div>
-    <div class="col-lg-4 col-md-4 col-sm-12">
+    <div class="col-lg-10 col-md-10 col-sm-12">
         <form class="form" method="post" action="/escolha-medicamento.html">
-            Para iniciar um chamado, escolha o medicamento que deseja relatar o efeito adverso:
-
-
-            <div class="form-group">
-                <label for="buscamedicamento">Buscar</label>
-                <input type="text" class="form-control" id="buscamedicamento" name="buscamedicamento"
-                       placeholder="Busque aqui o medicamento que deseja encontrar">
-
+            <h3>Para iniciar um chamado, escolha o medicamento que deseja relatar o efeito adverso:</h3>
+            <div class="col-lg-9 container-fluid">
+                <input type="text" class="form-control form-control-lg" id="buscamedicamento" name="buscamedicamento"
+                       placeholder="Busque aqui o medicamento que deseja abrir chamado">
+                <br>
                 <button type="submit" class="btn btn-success">Buscar Medicamento</button>
-                <button type="reset" class="btn btn-danger">Cancelar</button>
             </div>
 
-            <br>
-            <table class="table">
+        </form>
+        <br>
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <table class="table table-responsive-sm">
                 <thead>
                 <th>Medicamento</th>
                 <th>Laboratório</th>
@@ -39,18 +36,18 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
                 <tbody>
                 <c:forEach var="medicamento" items="${medicamentos}">
                     <tr>
-                        <td>${medicamento.nome}</td>
-                        <td>${medicamento.laboratorio}</td>
-                        <td><a href="chamado.html/${medicamento.id}" class="btn btn-primary">Iniciar Chamado</a></td>
+                        <td>${medicamento.nomeMedicamento}</td>
+                        <td>${medicamento.farmaceutica.nome}</td>
+                        <td><a href="chamado.html/${medicamento.idMedicamento}" class="btn btn-primary">Iniciar
+                            Chamado</a>
+                        </td>
 
                     </tr>
                 </c:forEach>
                 </tbody>
             </table>
 
-
-        </form>
+        </div>
     </div>
-    <div class="col-lg-4 col-md-4 col-sm-12"></div>
 </div>
 <%@include file="fragments/footer.jspf" %>

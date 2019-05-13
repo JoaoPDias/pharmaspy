@@ -12,4 +12,31 @@ public class Farmaceutica {
     private Long idFarmaceutica;
     private String nome;
     private String cnpj;
+
+    public Long getIdFarmaceutica() {
+        return idFarmaceutica;
+    }
+
+    public Farmaceutica setIdFarmaceutica(Long idFarmaceutica) {
+        this.idFarmaceutica = idFarmaceutica;
+        return this;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public Farmaceutica setNome(String nome) {
+        this.nome = nome;
+        return this;
+    }
+
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    public Farmaceutica setCnpj(String cnpj) {
+        this.cnpj = cnpj;
+        return this;
+    }
 }

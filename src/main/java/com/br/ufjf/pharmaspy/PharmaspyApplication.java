@@ -19,13 +19,18 @@ public class PharmaspyApplication implements WebMvcConfigurer {
         // Register resource handler for images
         registry.addResourceHandler("/images/**").addResourceLocations("/WEB-INF/images/")
                 .setCacheControl(CacheControl.maxAge(2, TimeUnit.HOURS).cachePublic());
+        registry.addResourceHandler("/js/**").addResourceLocations("/WEB-INF/js/")
+                .setCacheControl(CacheControl.maxAge(2, TimeUnit.HOURS).cachePublic());
     }
+
     public static void main(String[] args) {
         ConfigurableApplicationContext ctx = SpringApplication.run(PharmaspyApplication.class, args);
-        UsuarioRepository UsrRep=ctx.getBean(UsuarioRepository.class);
+        UsuarioRepository UsrRep = ctx.getBean(UsuarioRepository.class);
         Usuario usuario = new Usuario();
         usuario.setNome("Teste").setEmail("teste@gmail.com").setSenha("12345").setTipoUsuario(TipoUsuario.CONSUMIDOR);
-
+        if (UsrRep.findByEmailIgnoreCase(usuario.getEmail()) == null) {
+            UsrRep.save(usuario);
+        }
 
 
     }

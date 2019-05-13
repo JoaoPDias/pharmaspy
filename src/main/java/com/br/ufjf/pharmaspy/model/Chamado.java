@@ -20,6 +20,7 @@ public class Chamado {
     private LocalDate dataAquisicao;
     @OneToOne
     private Endereco localAquisicao;
+    private String farmacia;
     private String relato;
     @CreationTimestamp
     private LocalDateTime dataCadastro;
