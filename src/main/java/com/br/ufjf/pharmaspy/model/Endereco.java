@@ -13,8 +13,6 @@ public class Endereco {
     private String bairro;
     private String localidade;
     private String uf;
-    @OneToOne
-    private Chamado chamado;
 
     public String getCep() {
         return cep;

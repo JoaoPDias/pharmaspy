@@ -18,7 +18,7 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
 <div class="row">
     <div class="col-lg-4 col-md-4 col-sm-12"></div>
     <div class="col-lg-4 col-md-4 col-sm-12">
-        <form class="form" method="post" action="/chamado.html">
+        <form class="form" method="post" action="/chamado.html" enctype="multipart/form-data">
             Estamos abrindo um chamado. Relate preenchendo as informações abaixo:
             <div class="form-group">
                 <label for="medicamento">Medicamento Escolhido</label>
@@ -52,12 +52,12 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
 
             <div class="form-group">
                 <label for="logradouro">Logradouro do Estabelecimento</label>
-                <input type="text" class="form-control" id="logradouro" name="logradouro">
+                <input type="text" class="form-control" id="logradouro" name="logradouro" readonly>
             </div>
 
             <div class="form-group">
                 <label for="bairro">Bairro do Estabelecimento</label>
-                <input type="text" class="form-control" id="bairro" name="bairro">
+                <input type="text" class="form-control" id="bairro" name="bairro" readonly>
             </div>
 
             <div class="form-group">
@@ -67,12 +67,12 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
 
             <div class="form-group">
                 <label for="cep">Cidade do Estabelecimento</label>
-                <input type="text" class="form-control" id="localidade" name="localidade">
+                <input type="text" class="form-control" id="localidade" name="localidade" readonly>
             </div>
 
             <div class="form-group">
                 <label for="cep">UF do Estabelecimento</label>
-                <input type="text" class="form-control" id="uf" name="uf">
+                <input type="text" class="form-control" id="uf" name="uf" readonly>
             </div>
 
             <div class="form-group">
@@ -88,8 +88,10 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
             <div class="form-group">
                 <label for="fileInput">Anexar foto</label>
                 <input id="fileInput" type="file" name="uploadingFiles" onchange="updateSize();" multiple>
-                selected files: <span id="fileNum">0</span>;
-                total size: <span id="fileSize">0</span>
+                <small class="form-text text-muted">
+                    Arquivos Selecionados: <span id="fileNum">0</span>
+                </small>
+
             </div>
 
             <button type="submit" class="btn btn-success">Salvar</button>

@@ -132,4 +132,13 @@ public class Chamado {
         this.fotos = fotos;
         return this;
     }
+
+    public String getFarmacia() {
+        return farmacia;
+    }
+
+    public Chamado setFarmacia(String farmacia) {
+        this.farmacia = farmacia;
+        return this;
+    }
 }

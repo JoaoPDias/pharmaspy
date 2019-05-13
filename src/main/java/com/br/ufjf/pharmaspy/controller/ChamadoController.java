@@ -3,6 +3,7 @@ package com.br.ufjf.pharmaspy.controller;
 import com.br.ufjf.pharmaspy.ViaCEPClient;
 import com.br.ufjf.pharmaspy.model.*;
 import com.br.ufjf.pharmaspy.repository.ChamadoRepository;
+import com.br.ufjf.pharmaspy.repository.EnderecoRepository;
 import com.br.ufjf.pharmaspy.repository.FotoRepository;
 import com.br.ufjf.pharmaspy.repository.MedicamentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,49 +27,65 @@ public class ChamadoController {
 
     @Autowired
     private FotoRepository fotoRepository;
+
+    @Autowired
+    private EnderecoRepository enderecoRepository;
+
     public static final String uploadingDir = System.getProperty("user.dir") + "/uploadingDir/";
 
     @Autowired
     private ViaCEPClient viaCEPClient;
+
     @GetMapping({"chamado.html/{idMedicamento}"})
     public ModelAndView chamado(@PathVariable Long idMedicamento) {
-       /* Long idMedicamento = Long.valueOf(idMedicamento);*/
+        /* Long idMedicamento = Long.valueOf(idMedicamento);*/
         Medicamento medicamento = medicamentoRepository.getOne(idMedicamento);
-        ModelAndView mv = new ModelAndView().addObject("medicamento",medicamento);
+        ModelAndView mv = new ModelAndView().addObject("medicamento", medicamento);
         mv.setViewName("chamado");
         return mv;
     }
 
     @PostMapping("chamado.html")
-    public ModelAndView chamado_salvar(Chamado chamado, @RequestParam("uploadingFiles") MultipartFile[] uploadingFiles, HttpSession session) throws IOException {
-        if(session.getAttribute("usuarioId")!=null) {
+    public String chamado_salvar(Chamado chamado, @RequestParam("uploadingFiles") MultipartFile[] uploadingFiles, HttpSession session,
+                                       @RequestParam("cep") String cep, @RequestParam("logradouro") String logradouro, @RequestParam("bairro") String bairro
+            , @RequestParam("complemento") String complemento, @RequestParam("localidade") String localidade, @RequestParam("uf") String uf) throws IOException {
+        if (session.getAttribute("usuarioId") != null) {
+            Endereco endereco = new Endereco().setBairro(bairro)
+                    .setCep(cep)
+                    .setComplemento(complemento)
+                    .setLogradouro(logradouro)
+                    .setLocalidade(localidade)
+                    .setUf(uf);
+            enderecoRepository.save(endereco);
             Long usuarioId = (Long) session.getAttribute("usuarioId");
             chamado.setUsuarioCriador(new Usuario().setIdUsuario(usuarioId));
+            chamado.setLocalAquisicao(endereco);
             Chamado chamadoSaved = chamadoRepository.save(chamado);
-            fileSave(uploadingFiles, uploadingDir, chamadoSaved);
-            ModelAndView mv = new ModelAndView();
-            mv.setViewName("chamado");
-            return mv;
+            if(uploadingFiles != null) {
+                fileSave(uploadingFiles, uploadingDir, chamadoSaved);
+            }
+            return "redirect:/inicio.html";
         }
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("login");
-        return mv;
+        return "redirect:/login.html";
     }
+
     @PostMapping("endereco.html")
-    public @ResponseBody Endereco getEndereco(@RequestBody String cep){
-        String cepPesquisa = cep.replace("-","").replace(".","").replace("\"","" );
+    public @ResponseBody
+    Endereco getEndereco(@RequestBody String cep) {
+        String cepPesquisa = cep.replace("-", "").replace(".", "").replace("\"", "");
         return viaCEPClient.buscaEnderecoPor(cepPesquisa);
 
     }
+
     private void fileSave(@RequestParam("uploadingFiles") MultipartFile[] uploadingFiles, String uploadingDir, Chamado chamado) throws IOException {
-        File dir = new File(uploadingDir +"/"+chamado.getIdChamado());
-        if(!dir.exists()){
+        File dir = new File(uploadingDir + "/" + chamado.getIdChamado());
+        if (!dir.exists()) {
             dir.mkdirs();
         }
-        for(MultipartFile uploadedFile : uploadingFiles) {
-            File file = new File(dir +"/"+ uploadedFile.getOriginalFilename());
+        for (MultipartFile uploadedFile : uploadingFiles) {
+            File file = new File(dir + "/" + uploadedFile.getOriginalFilename());
             uploadedFile.transferTo(file);
-            Foto foto = new Foto(dir.getAbsolutePath(),file.getName(),chamado);
+            Foto foto = new Foto(dir.getAbsolutePath(), file.getName(), chamado);
             fotoRepository.save(foto);
         }
     }
@@ -83,7 +100,7 @@ public class ChamadoController {
     @PostMapping({"escolha-medicamento.html"})
     public ModelAndView buscaMedicamento(String buscamedicamento) {
         List<Medicamento> medicamentos = medicamentoRepository.findAllByNomeMedicamentoContaining(buscamedicamento);
-        ModelAndView mv = new ModelAndView().addObject("medicamentos",medicamentos);
+        ModelAndView mv = new ModelAndView().addObject("medicamentos", medicamentos);
         mv.setViewName("escolhamedicamento");
         return mv;
     }
