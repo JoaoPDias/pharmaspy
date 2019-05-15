@@ -44,4 +44,11 @@ public class InicioController {
         return mv;
     }
 
+    @GetMapping("graficopizza.html")
+    public ModelAndView pizza(){
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("graficopizza");
+        return mv;
+    }
+
 }
