@@ -18,7 +18,7 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
     <div class="col-lg-4 col-md-4 col-sm-12">
         <form class="form" method="post" action="/cadastro-usuario.html">
             <div class="form-group">
-                <label for="tipo">Categoria Usuário</label>
+                <label for="tipo">Categoria do Usuário</label>
                 <select id="tipo" name='tipo' class="form-control">
                     <c:forEach items="${tipos}" var="tipo">
                         <option value="${tipo.id}">${tipo.nome}</option>
