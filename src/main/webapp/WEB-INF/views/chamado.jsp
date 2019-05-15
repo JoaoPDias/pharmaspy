@@ -15,90 +15,103 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
 </head>
 <body onload="updateSize();">
 <%@include file="fragments/nav.jspf" %>
-<div class="row">
-    <div class="col-lg-4 col-md-4 col-sm-12"></div>
-    <div class="col-lg-4 col-md-4 col-sm-12">
+
+<div class = "container-fluid">
+        <div class="row">
+         <h6> Estamos abrindo um chamado. Relate preenchendo as informações abaixo:</h6>
+        </div>
+
         <form class="form" method="post" action="/chamado.html" enctype="multipart/form-data">
-            Estamos abrindo um chamado. Relate preenchendo as informações abaixo:
-            <div class="form-group">
+        <div class = "form-row">
+            <div class="col">
                 <label for="medicamento">Medicamento Escolhido</label>
                 <input type="text" class="form-control" id="medicamento"
-                       placeholder="Medicamento" readonly value="${medicamento.nomeMedicamento}">
+                     placeholder="Medicamento" readonly value="${medicamento.nomeMedicamento}">
                 <input type="hidden" value="${medicamento.idMedicamento}" name="medicamento">
             </div>
-
-            <div class="form-group">
+                <div class="col">
                 <label for="vencimento">Vencimento</label>
                 <input type="date" class="form-control" id="vencimento" name="vencimento" placeholder="**/**/****">
-            </div>
-            <div class="form-group">
+                </div>
+                <div class="col">
                 <label for="lote">Lote</label>
-                <input type="text" class="form-control" id="lote" name="lote"
-                       placeholder="Lote">
+                <input type="text" class="form-control" id="lote" name="lote" placeholder="Lote">
+                </div>
             </div>
 
-            <div class="form-group">
-                <label for="farmacia">Fármacia ou Drogaria em que o medicamento foi adquirido</label>
-                <input type="text" class="form-control" id="farmacia" name="farmacia"
-                       placeholder="Farmácia ou Drogaria de Aquisição">
-            </div>
 
-            <div class="form-group">
-                <label for="cep">CEP do Estabelecimento</label>
-                <input type="text" class="form-control" id="cep" name="cep"
-                       placeholder="*****-***">
-                <button class="btn btn-success" type="button" onclick="buscaCep()">Buscar Endereço</button>
-            </div>
 
-            <div class="form-group">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <h6>Fármacia ou Drogaria em que o medicamento foi adquirido</h6>
+                    <div class="col">
+                    <label for="cep">CEP do Estabelecimento</label>
+                    <input type="text" class="form-control" id="cep" name="cep" placeholder="_____-___">
+                    <button class="btn btn-success" type="button" onclick="buscaCep()">Buscar Endereço</button>
+                    </div>
+                    <div class="col">
+                     <input type="text" class="form-control" id="farmacia" name="farmacia" placeholder="Farmácia ou Drogaria de Aquisição">
+                    </div>
+
+                <div class="col">
                 <label for="logradouro">Logradouro do Estabelecimento</label>
                 <input type="text" class="form-control" id="logradouro" name="logradouro" readonly>
-            </div>
-
-            <div class="form-group">
+                </div>
+                    <div class="col">
                 <label for="bairro">Bairro do Estabelecimento</label>
                 <input type="text" class="form-control" id="bairro" name="bairro" readonly>
-            </div>
-
-            <div class="form-group">
+                    </div>
+                    <div class="col">
                 <label for="cep">Complemento</label>
                 <input type="text" class="form-control" id="complemento" name="complemento">
-            </div>
-
-            <div class="form-group">
+                    </div>
+                    <div class="col">
                 <label for="cep">Cidade do Estabelecimento</label>
                 <input type="text" class="form-control" id="localidade" name="localidade" readonly>
-            </div>
-
-            <div class="form-group">
+                    </div>
+                    <div class="col">
                 <label for="cep">UF do Estabelecimento</label>
                 <input type="text" class="form-control" id="uf" name="uf" readonly>
+                    </div>
             </div>
 
-            <div class="form-group">
+
+
+
 
                 <label for="relato">Relato</label>
                 <textarea class="form-control" id="relato" name="relato" rows="10" cols="40" maxlength="500" placeholder="Relate aqui a experiência que teve com o medicamento escolhido.">
 
                </textarea>
 
-            </div>
 
 
-            <div class="form-group">
+
+
                 <label for="fileInput">Anexar foto</label>
                 <input id="fileInput" type="file" name="uploadingFiles" onchange="updateSize();" multiple>
                 <small class="form-text text-muted">
                     Arquivos Selecionados: <span id="fileNum">0</span>
                 </small>
 
+
+
+                <button type="submit" class="btn btn-success">Salvar</button>
+                <button type="reset" class="btn btn-danger">Cancelar</button>
+
             </div>
 
-            <button type="submit" class="btn btn-success">Salvar</button>
-            <button type="reset" class="btn btn-danger">Cancelar</button>
+
+
         </form>
-    </div>
-    <div class="col-lg-4 col-md-4 col-sm-12"></div>
+
+
+
+
+
+
+
 </div>
+
 <%@include file="fragments/footer.jspf" %>
 <script src="/js/functions.js"></script>
