@@ -13,4 +13,38 @@ public class ReacaoAdversa {
     private Long idReacao;
     private String titulo;
     private String descricao;
+
+    public ReacaoAdversa() {
+    }
+
+    public ReacaoAdversa(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public Long getIdReacao() {
+        return idReacao;
+    }
+
+    public ReacaoAdversa setIdReacao(Long idReacao) {
+        this.idReacao = idReacao;
+        return this;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public ReacaoAdversa setTitulo(String titulo) {
+        this.titulo = titulo;
+        return this;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public ReacaoAdversa setDescricao(String descricao) {
+        this.descricao = descricao;
+        return this;
+    }
 }

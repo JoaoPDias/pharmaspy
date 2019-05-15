@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface MedicamentoRepository extends JpaRepository<Medicamento, Long> {
     List<Medicamento> findAllByNomeMedicamentoContaining(String nome);
+    Medicamento findByIdMedicamento(Long id);
 }

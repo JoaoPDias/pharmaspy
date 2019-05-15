@@ -2,10 +2,7 @@ package com.br.ufjf.pharmaspy.controller;
 
 import com.br.ufjf.pharmaspy.ViaCEPClient;
 import com.br.ufjf.pharmaspy.model.*;
-import com.br.ufjf.pharmaspy.repository.ChamadoRepository;
-import com.br.ufjf.pharmaspy.repository.EnderecoRepository;
-import com.br.ufjf.pharmaspy.repository.FotoRepository;
-import com.br.ufjf.pharmaspy.repository.MedicamentoRepository;
+import com.br.ufjf.pharmaspy.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +23,9 @@ public class ChamadoController {
     private ChamadoRepository chamadoRepository;
 
     @Autowired
+    private ReacaoMedicamentoRepository reacaoMedicamentoRepository;
+
+    @Autowired
     private FotoRepository fotoRepository;
 
     @Autowired
@@ -39,8 +39,9 @@ public class ChamadoController {
     @GetMapping({"chamado.html/{idMedicamento}"})
     public ModelAndView chamado(@PathVariable Long idMedicamento) {
         /* Long idMedicamento = Long.valueOf(idMedicamento);*/
-        Medicamento medicamento = medicamentoRepository.getOne(idMedicamento);
+        Medicamento medicamento = medicamentoRepository.findByIdMedicamento(idMedicamento);
         ModelAndView mv = new ModelAndView().addObject("medicamento", medicamento);
+        mv.addObject("reacoes",reacaoMedicamentoRepository.findAllByMedicamento(medicamento));
         mv.setViewName("chamado");
         return mv;
     }

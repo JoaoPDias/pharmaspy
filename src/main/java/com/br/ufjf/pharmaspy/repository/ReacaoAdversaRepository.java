@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ReacaoAdversaRepository extends JpaRepository<ReacaoAdversa, Long> {
+     public boolean existsByTitulo(String titulo);
 }
