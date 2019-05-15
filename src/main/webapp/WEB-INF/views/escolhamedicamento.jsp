@@ -14,20 +14,29 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
 </head>
 <%@include file="fragments/nav.jspf" %>
 <div class="row">
-    <div class="col-lg-10 col-md-10 col-sm-12">
+    <div class="col"></div>
+    <div class="col-6">
         <form class="form" method="post" action="/escolha-medicamento.html">
-            <h3>Para iniciar um chamado, escolha o medicamento que deseja relatar o efeito adverso:</h3>
-            <div class="col-lg-9 container-fluid">
+            <br>
+            <h5>Para iniciar um chamado, escolha o medicamento que deseja relatar o efeito adverso:</h5>
+
                 <input type="text" class="form-control form-control-lg" id="buscamedicamento" name="buscamedicamento"
-                       placeholder="Busque aqui o medicamento que deseja abrir chamado">
+                       placeholder="Busque aqui o produto fármaco para o qual deseja abrir chamado">
                 <br>
                 <button type="submit" class="btn btn-success">Buscar Medicamento</button>
-            </div>
+
 
         </form>
         <br>
-        <div class="col-lg-12 col-md-12 col-sm-12">
-            <table class="table table-responsive-sm">
+
+    </div>
+    <div class="col"></div>
+
+</div>
+<div class="row">
+    <div class="col"></div>
+    <div class="col-6">
+          <table class="table table-responsive-sm">
                 <thead>
                 <th>Medicamento</th>
                 <th>Laboratório</th>
@@ -46,8 +55,8 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
                 </c:forEach>
                 </tbody>
             </table>
-
-        </div>
     </div>
+        <div class="col"></div>
+</div>
 </div>
 <%@include file="fragments/footer.jspf" %>
